@@ -1,0 +1,31 @@
+version: '2.24.6'
+services:
+  postgres_db:
+    image: postgres:alpine
+    ports: 
+      - 5432:5432
+    environment: 
+      POSTGRES_USER: ${POSTGRESUSER}
+      POSTGRES_PASSWORD: ${POSTGRESPASSWORD}
+      POSTGRES_DB: ${POSTGRESDB}
+    
+    volumes:
+      - ./todolist_data/pgdata:/var/lib/postgresql/data
+
+  todolist_api:
+    build:
+      context: "."
+      dockerfile: Dockerfile
+    environment:
+      POSTGRESUSER: ${POSTGRESUSER}
+      POSTGRESPASSWORD: ${POSTGRESPASSWORD}
+      POSTGRESSERVER: ${POSTGRESSERVER}
+      POSTGRESDB: ${POSTGRESDB}
+      POSTGRESPORT: ${POSTGRESPORT}
+      DB_URL: ${DB_URL}
+      SECRET_KEY: ${SECRET_KEY}
+      ALGORITHM: ${ALGORITHM}
+    ports:
+      - 3000:3000
+    depends_on:
+      - "postgres_db"
