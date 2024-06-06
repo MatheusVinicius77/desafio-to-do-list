@@ -8,6 +8,7 @@ import os
 
 from database.database import Base 
 from models.task import *
+from models.user import *
 from dotenv import load_dotenv
 load_dotenv()
 database_url = os.getenv("DB_URL")
