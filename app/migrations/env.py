@@ -6,7 +6,7 @@ from pathlib import Path
 from alembic import context
 import os
 
-from database.database import Base 
+from ..database.database import Base 
 from models.task import *
 from dotenv import load_dotenv
 load_dotenv()

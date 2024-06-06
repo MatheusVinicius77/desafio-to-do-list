@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from models.user import UserModel
-from schemas.auth import CreateUserRequestSchema, Token
+from ..models.user import UserModel
+from ..schemas.auth import CreateUserRequestSchema, Token
 from fastapi import HTTPException, status
 from .utils import authenticate_user, create_access_token, bycrpt_context,oauth2_bearer
 from datetime import datetime, timedelta

@@ -1,8 +1,8 @@
-from schemas.task import TaskSchema
+from ..schemas.task import TaskSchema
 from sqlalchemy.orm import Session
 from datetime import datetime
-from models.task import TaskModel
-from schemas.task import TaskSchema, TaskCreateSchema, TaskUpdateSchema
+from ..models.task import TaskModel
+from ..schemas.task import TaskSchema, TaskCreateSchema, TaskUpdateSchema
 
 from fastapi import HTTPException
 

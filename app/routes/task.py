@@ -2,9 +2,9 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from typing import List, Dict
 
-from schemas.task import TaskSchema, TaskCreateSchema, TaskUpdateSchema
-from services import task,utils
-from database.db_dependency import get_db
+from ..schemas.task import TaskSchema, TaskCreateSchema, TaskUpdateSchema
+from ..services import task,utils
+from ..database.db_dependency import get_db
 
 router = APIRouter(prefix="/tasks")
 

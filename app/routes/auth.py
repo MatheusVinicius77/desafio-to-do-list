@@ -1,8 +1,8 @@
 from fastapi import APIRouter, status, Depends
-from database.db_dependency import get_db
-from schemas.auth import CreateUserRequestSchema, Token
+from ..database.db_dependency import get_db
+from ..schemas.auth import CreateUserRequestSchema, Token
 from sqlalchemy.orm import Session
-from services import auth
+from ..services import auth
 from typing import Annotated
 from fastapi.security import OAuth2PasswordRequestForm
 

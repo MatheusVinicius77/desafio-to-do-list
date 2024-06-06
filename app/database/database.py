@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 from dotenv import load_dotenv
 import os
 
-load_dotenv('./.env')
+load_dotenv('.env')
 
 username:str = os.getenv("POSTGRESUSER")
 password:str = os.getenv("POSTGRESPASSWORD")

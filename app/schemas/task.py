@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from models.task import TaskState 
+from ..models.task import TaskState 
 from datetime import datetime
 from typing import Optional
 
