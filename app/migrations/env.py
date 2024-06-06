@@ -6,10 +6,10 @@ from pathlib import Path
 from alembic import context
 import os
 
-from ..database.database import Base 
+from database.database import Base 
 from models.task import *
 from dotenv import load_dotenv
-load_dotenv()
+load_dotenv(dotenv_path="./.env")
 database_url = os.getenv("DB_URL")
 
 # this is the Alembic Config object, which provides
