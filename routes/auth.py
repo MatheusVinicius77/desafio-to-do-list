@@ -16,7 +16,7 @@ default_router = APIRouter()
 
 @default_router.get("/", status_code=status.HTTP_200_OK)
 async def root() -> dict[str,str]:
-    return {"message": "Welcome to the API!"}
+    return {"message": "Welcome to the API! Authenticate to be able to use"}
 
 
 # Password hashing and unhashing
