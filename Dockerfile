@@ -8,8 +8,10 @@ RUN apk update && \
 
 COPY . .
 
+
+
 RUN  pip install --no-cache-dir --upgrade -r requirements.txt
-RUN test -d migrations || alembic init migrations
 
+# ENV PYTHONPATH=/app
 
-CMD ["sh", "-c", "alembic upgrade head && uvicorn main:app --host 0.0.0.0 --port 3000"]
+CMD ["sh", "-c", "alembic revision --autogenerate && alembic upgrade head && uvicorn main:app --host 0.0.0.0 --port 3000"]

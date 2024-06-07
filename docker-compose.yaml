@@ -17,11 +17,6 @@ services:
       context: "."
       dockerfile: Dockerfile
     environment:
-      POSTGRESUSER: ${POSTGRESUSER}
-      POSTGRESPASSWORD: ${POSTGRESPASSWORD}
-      POSTGRESSERVER: ${POSTGRESSERVER}
-      POSTGRESDB: ${POSTGRESDB}
-      POSTGRESPORT: ${POSTGRESPORT}
       DB_URL: ${DB_URL}
       SECRET_KEY: ${SECRET_KEY}
       ALGORITHM: ${ALGORITHM}
