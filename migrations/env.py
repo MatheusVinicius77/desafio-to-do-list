@@ -72,6 +72,8 @@ def run_migrations_offline() -> None:
 def run_migrations_online_with_retry() -> None:
     """Run migrations in 'online' mode with retry."""
     retries = 0
+    time.sleep(RETRY_INTERVAL)
+
     while retries < MAX_RETRIES:
         try:
             connectable = engine_from_config(
