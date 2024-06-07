@@ -63,28 +63,36 @@ def run_migrations_offline() -> None:
         context.run_migrations()
 
 
-def run_migrations_online() -> None:
-    """Run migrations in 'online' mode."""
-    try:
-        connectable = engine_from_config(
-            config.get_section(config.config_ini_section, {}),
-            prefix="sqlalchemy.",
-            poolclass=pool.NullPool,
-        )
 
-        with connectable.connect() as connection:
-            context.configure(
-                connection=connection, target_metadata=target_metadata
+
+def run_migrations_online_with_retry() -> None:
+    """Run migrations in 'online' mode with retry."""
+    retries = 0
+    while retries < MAX_RETRIES:
+        try:
+            connectable = engine_from_config(
+                config.get_section(config.config_ini_section, {}),
+                prefix="sqlalchemy.",
+                poolclass=pool.NullPool,
             )
 
-            with context.begin_transaction():
-                context.run_migrations()
-    except OperationalError as e:
-        print("Error connecting to the database:", e)
+            with connectable.connect() as connection:
+                context.configure(
+                    connection=connection, target_metadata=target_metadata
+                )
 
+                with context.begin_transaction():
+                    context.run_migrations()
+            break  # conexão bem-sucedida, então saímos do loop
+        except OperationalError as e:
+            print(f"Error connecting to the database: {e}. Retrying...")
+            retries += 1
+            time.sleep(RETRY_INTERVAL)
 
+    if retries == MAX_RETRIES:
+        print("Max retries exceeded. Unable to connect to the database.")
 
 if context.is_offline_mode():
     run_migrations_offline()
 else:
-    run_migrations_online()
+    run_migrations_online_with_retry()
