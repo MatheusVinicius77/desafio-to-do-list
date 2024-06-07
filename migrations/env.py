@@ -15,6 +15,9 @@ database_url = os.getenv("DB_URL")
 # access to the values within the .ini file in use.
 config = context.config
 
+MAX_RETRIES = 5
+RETRY_INTERVAL = 5 
+
 if database_url:
     config.set_main_option('sqlalchemy.url', database_url)
 else:
