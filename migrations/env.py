@@ -89,7 +89,7 @@ def run_migrations_online_with_retry() -> None:
 
                 with context.begin_transaction():
                     context.run_migrations()
-            break  # conexão bem-sucedida, então saímos do loop
+            break 
         except OperationalError as e:
             print(f"Error connecting to the database: {e}. Retrying...")
             retries += 1
