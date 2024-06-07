@@ -1,5 +1,6 @@
 from logging.config import fileConfig
-
+from sqlalchemy.exc import OperationalError
+import time
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 from pathlib import Path
